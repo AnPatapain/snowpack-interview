@@ -20,7 +20,7 @@ const DashBoard: React.FC = () => {
     }
 
     return (
-        <div>
+        <div className="text-center">
             <h1 className="my-8 text-3xl font-bold">Hi 👋, What image you want to search today ?</h1>
             <SearchBar searchHandler={handleSearch}/>
             <br/>

@@ -27,7 +27,7 @@ const Home: React.FC = () => {
                     <AuthModal setShowModal={setShowModal} isSignup={isSignup} setIsSignup={setIsSignup}/>
                 ) : (
                     <div className="flex my-8" dir="ltr">
-                        <button className="btn text-xl me-2" onClick={handleSignupClick}>Create Account</button>
+                        <button className="btn bg-neutral-200 text-xl me-2" onClick={handleSignupClick}>Create Account</button>
                         <button className="btn btn-outline text-xl" onClick={handleLoginClick}>Log in</button>
                     </div>
                 )}

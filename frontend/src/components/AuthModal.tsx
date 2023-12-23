@@ -42,7 +42,7 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
     }
 
     return (
-        <div className="max-w-md p-4 bg-slate-400">
+        <div className="max-w-md p-4 bg-slate-400 border-solid rounded-lg">
             <div className="cursor-pointer float-right" onClick={handleClick}>
                 &#10006;
             </div>
