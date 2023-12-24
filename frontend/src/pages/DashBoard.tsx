@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useState} from "react";
 import SearchBar from "../components/SearchBar";
 import Images from "../components/Images";
 import useFetch from "../hooks/useFetch";
