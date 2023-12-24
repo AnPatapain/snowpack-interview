@@ -1,4 +1,5 @@
 import express from "express";
+import routesManager from "./routes.manager";
 import config, {ConfigType} from "../config";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -15,6 +16,7 @@ const server = () => {
     }
     let init = () => {
         configServer(config);
+        routesManager.injectRoutes(server);
     }
 
     let start = () => {
