@@ -2,13 +2,15 @@ import React, {useState} from "react";
 import SearchBar from "../components/SearchBar";
 import Images from "../components/Images";
 import useFetch from "../hooks/useFetch";
+import useDebounce from "../hooks/useDebounce";
 
 const DashBoard: React.FC = () => {
     const [query, setQuery] = useState<string>("");
+    const debounceQuery = useDebounce(query, 500);
 
     const fetchConfig = {
         url: "",
-        params: {q: encodeURIComponent(query), image_type: "photo", pretty: "tr"}
+        params: {q: debounceQuery, image_type: "photo", pretty: "tr"}
     }
 
     const [data, error, loading] = useFetch<any>(fetchConfig,

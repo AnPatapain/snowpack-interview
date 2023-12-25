@@ -29,7 +29,7 @@ const useFetch = <T = unknown>(config: AxiosRequestConfig, deps: any[]) => {
                     if(isMounted) {
                         setState({data: response.data, error: null, loading: false});
                     }
-                }, 500);
+                }, 200);
             }catch (error) {
                 if(isMounted) {
                     setState({data: null, error: null, loading: false});
