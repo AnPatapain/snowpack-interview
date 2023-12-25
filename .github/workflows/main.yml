@@ -81,6 +81,6 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.14
         with:
           heroku_api_key: ${{ env.HEROKU_API_KEY }}
-          heroku_app_name: "image-search"
+          heroku_app_name: "image-search-snowpack"
           heroku_email: "ke_an.nguyen@insa-cvl.fr"
           appdir: "frontend"
