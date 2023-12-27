@@ -9,7 +9,7 @@ const DashBoard: React.FC = () => {
     const debounceQuery = useDebounce(query, 500);
 
     const fetchConfig = {
-        url: "",
+        url: "/api/pixabay/",
         params: {q: debounceQuery, image_type: "photo", pretty: "tr"}
     }
 
