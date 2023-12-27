@@ -17,32 +17,27 @@ const useFetch = <T = unknown>(config: AxiosRequestConfig, deps: any[]) => {
 
     useEffect(() => {
         let isMounted = true;
-        let timeoutID: NodeJS.Timeout;
 
         const fetchData = async () => {
-            if(!isMounted) return;
-            setState({ data: null, error: null, loading: true });
+            if (!isMounted) return;
+            setState({data: null, error: null, loading: true});
             try {
-                // Intentionally delay for the skeleton loading test
-                    timeoutID = setTimeout(async () => {
-                    const response = await BaseService.get(config.url as string,{params: config.params});
-                    if(isMounted) {
-                        setState({data: response.data, error: null, loading: false});
-                    }
-                }, 200);
-            }catch (error) {
-                if(isMounted) {
+                const response = await BaseService.get(config.url as string, {params: config.params});
+                if (isMounted) {
+                    setState({data: response.data, error: null, loading: false});
+                }
+            } catch (error) {
+                if (isMounted) {
                     setState({data: null, error: null, loading: false});
                 }
             }
         }
 
-        if(config.params.q !== "") {
+        if (config.params.q !== "") {
             fetchData()
         }
 
         return () => {
-            clearTimeout(timeoutID);
             isMounted = false;
         };
     }, [...deps])
