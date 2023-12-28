@@ -10,11 +10,11 @@ const DashBoard: React.FC = () => {
 
     const fetchConfig = {
         url: "/api/pixabay/",
-        params: {q: debounceQuery, image_type: "photo", pretty: "tr"}
+        params: {q: debounceQuery}
     }
 
     const [data, error, loading] = useFetch<any>(fetchConfig,
-        [fetchConfig.url, fetchConfig.params.q, fetchConfig.params.image_type, fetchConfig.params.pretty]);
+        [fetchConfig.url, fetchConfig.params.q]);
 
     const handleSearch = async (query: string) => {
         setQuery(query);
