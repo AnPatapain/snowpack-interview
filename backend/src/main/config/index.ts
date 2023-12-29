@@ -1,6 +1,7 @@
 import corsConfig from "./cors.config";
 import apiConfig from "./api.config";
-
+import databaseConfig from "./database.config";
+import authConfig from "./auth.config";
 import e from "cors";
 
 interface ConfigType {
@@ -10,6 +11,12 @@ interface ConfigType {
     apiConfig: {
         apiBaseURL: string | undefined;
         apiKey: string | undefined;
+    };
+    databaseConfig: {
+        connect: () => void;
+    };
+    authConfig: {
+        jwt_secret: string;
     }
     // other config type
 }
@@ -18,5 +25,7 @@ export {ConfigType};
 
 export default {
     corsConfig,
-    apiConfig
+    apiConfig,
+    databaseConfig,
+    authConfig
 };

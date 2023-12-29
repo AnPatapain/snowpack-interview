@@ -13,6 +13,7 @@ const server = () => {
         server.set("trust proxy", true);
         server.use(bodyParser.json());
         server.use(cors(config.corsConfig.corsOptions));
+        config.databaseConfig.connect();
     }
     let init = () => {
         configServer(config);
