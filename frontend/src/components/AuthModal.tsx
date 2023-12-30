@@ -39,7 +39,6 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
             })
         }else {
             AuthService.signIn(values.email, values.password).then((response) => {
-                console.log(response.data);
                 localStorage.setItem(JWT_TOKEN, response.data.token);
                 navigate("/dashboard");
             }).catch(error => {
