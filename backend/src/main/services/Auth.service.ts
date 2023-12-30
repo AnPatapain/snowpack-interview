@@ -32,7 +32,7 @@ let signIn = async (data: AuthDTO) => {
         authConfig.jwt_secret,
         {
             algorithm: "HS256",
-            expiresIn: 4 * 60 * 60
+            expiresIn: 30 * 24 * 60 * 60
         });
     return {
         id: existingUser._id,
