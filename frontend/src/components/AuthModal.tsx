@@ -22,7 +22,7 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
     const [error, setError] = useState<string>('')
 
     useEffect(() => {
-        values.password !== values.confirmPassword ? setError("Password do not match") : setError("")
+        (isSignup && values.password !== values.confirmPassword) ? setError("Password do not match") : setError("")
     }, [values])
 
     const handleClickCloseIcon = () => {
