@@ -35,14 +35,14 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
             AuthService.signUp(values.email, values.password).then((response) => {
                 setIsSignup(false);
             }).catch(error => {
-                alert(error.response.data.message);
+                setError(error.response.data.message);
             })
         }else {
             AuthService.signIn(values.email, values.password).then((response) => {
                 localStorage.setItem(JWT_TOKEN, response.data.token);
                 navigate("/dashboard");
             }).catch(error => {
-                alert(error.response.data.message);
+                setError(error.response.data.message);
             })
         }
     }
@@ -78,7 +78,7 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
                 />)}
 
                 <button className="btn btn-success text-xl my-8" disabled={error?true:false}>{isSignup ? 'Continue' : 'Login'}</button>
-                { (isSignup && error) && (<p className="text-xl font-bold text-rose-700">🚨 {error}</p>)}
+                { (error) && (<p className="text-xl font-bold text-rose-700">🚨 {error}</p>)}
             </form>
         </div>
     )
