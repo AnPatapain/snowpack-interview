@@ -2,13 +2,12 @@ import express, {response} from "express";
 import BaseService from "../services/APIService/BaseService";
 import AxiosResponseError from "../errors/AxiosResponseError";
 import AxiosRequestError from "../errors/AxiosRequestError";
+import verifyJwtToken from "../middleware/jwt.auth";
 
 const router = express.Router();
 
 router.route("/pixabay")
-    .get(async (req, res, next) => {
-        // if(typeof req.query.q === 'string') console.log(req.query.q, encodeURIComponent(req.query.q));
-
+    .get([verifyJwtToken], async (req: express.Request, res: express.Response, next: express.NextFunction) => {
         if (typeof req.query.q !== 'string') return res.status(200).send("Query is missing");
         try {
             const response = await BaseService.get("",
