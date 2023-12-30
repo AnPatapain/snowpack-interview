@@ -11,6 +11,7 @@ let verifyJwtToken = async (req: express.Request, res: express.Response, next: e
         const token = authHeader && authHeader.split(' ')[1];
         if(!token) next(new BadCredentialError("JWT is missing"));
         const jwtReturn = jwt.verify(token as string, authConfig.jwt_secret) as jwt.JwtPayload;
+        console.log(jwtReturn);
         return next()
     } catch (err) {
         next(new BadCredentialError("JWT authentication errors"));

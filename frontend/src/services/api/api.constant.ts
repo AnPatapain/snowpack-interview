@@ -1,0 +1,1 @@
+export let JWT_TOKEN: string = "jwtToken";
