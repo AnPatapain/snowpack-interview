@@ -22,7 +22,7 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
     const [error, setError] = useState<string>('')
 
     useEffect(() => {
-        values.password !== values.confirmPassword ? setError("Password do not match") : setError("")
+        (isSignup && values.password !== values.confirmPassword) ? setError("Password do not match") : setError("")
     }, [values])
 
     const handleClickCloseIcon = () => {
@@ -39,7 +39,6 @@ const AuthModal:React.FC<AuthModalProps> = ({setShowModal, isSignup, setIsSignup
             })
         }else {
             AuthService.signIn(values.email, values.password).then((response) => {
-                console.log(response.data);
                 localStorage.setItem(JWT_TOKEN, response.data.token);
                 navigate("/dashboard");
             }).catch(error => {
