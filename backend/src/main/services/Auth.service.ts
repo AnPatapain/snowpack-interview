@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 import DuplicateEmailError from "../errors/DuplicateEmailError";
 import BadCredentialError from "../errors/BadCredentialError";
-import authConfig from "../config/auth.config";
+import config from "../config";
 
 interface AuthDTO {
     email: string;
@@ -29,7 +29,7 @@ let signIn = async (data: AuthDTO) => {
     }
 
     const token = jwt.sign({ id: existingUser.id },
-        authConfig.jwt_secret,
+        config.authConfig.jwt_secret,
         {
             algorithm: "HS256",
             expiresIn: 30 * 24 * 60 * 60

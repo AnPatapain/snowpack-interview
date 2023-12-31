@@ -4,6 +4,9 @@ import databaseConfig from "./database.config";
 import authConfig from "./auth.config";
 import e from "cors";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 interface ConfigType {
     corsConfig: {
         corsOptions: e.CorsOptions;
