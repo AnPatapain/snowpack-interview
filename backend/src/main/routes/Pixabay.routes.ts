@@ -4,6 +4,6 @@ import pixabayController from "../controller/Pixabay.controller";
 
 const router = express.Router();
 
-router.route("/pixabay").get([verifyJwtToken], pixabayController.getImagesByQuery)
+router.route("/pixabay").get(pixabayController.getImagesByQuery)
 
 export default router;

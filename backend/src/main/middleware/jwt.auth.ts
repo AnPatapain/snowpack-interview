@@ -17,7 +17,7 @@ let verifyJwtToken = async (req: express.Request, res: express.Response, next: e
 
         const jwtReturn = jwt.verify(token, config.authConfig.jwt_secret);
 
-        if(typeof jwtReturn !== 'string' && !SecurityContextHolder.getInstance().getSecurityContext()) {
+        if(typeof jwtReturn !== 'string' && SecurityContextHolder.getInstance().getSecurityContext()?.userID !== jwtReturn.id) {
             const user = await UserDao.findById(jwtReturn.id);
 
             if(user) {

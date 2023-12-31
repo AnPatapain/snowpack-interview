@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 
 export const navLinks = [
     {
-        id: "home",
+        id: "dashboard",
         title: "Home",
     },
     {
@@ -12,9 +12,18 @@ export const navLinks = [
     },
 ];
 
-const Navbar = () => {
+interface NavBarProps {
+    activeItem: string;
+}
+
+const Navbar: React.FC<NavBarProps> = (props) => {
     const navigate = useNavigate();
     const [active, setActive] = useState("Home");
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/dashboard");
+    }
 
     return (
         <nav className="w-full flex py-2 justify-between items-center navbar bg-slate-50">
@@ -23,14 +32,14 @@ const Navbar = () => {
                 {navLinks.map((nav, index) => (
                     <li
                         key={nav.id}
-                        className={`font-poppins font-normal cursor-pointer text-[16px] ${
-                            active === nav.title ? "bg-slate-300 px-2 rounded" : "text-black"
-                        } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
-                        onClick={() => setActive(nav.title)}
+                        className={`cursor-pointer ${props.activeItem === nav.id ? "bg-slate-300 px-2 rounded" : "text-black"
+                        } mr-4`}
+                        onClick={() => setActive(nav.id)}
                     >
-                        <a href={`#${nav.id}`}>{nav.title}</a>
+                        <a onClick={()=>{navigate(`/${nav.id}`)}}>{nav.title}</a>
                     </li>
                 ))}
+                <li className="cursor-pointer" onClick={() => {handleLogout()}}>Logout</li>
             </ul>
         </nav>
     );
