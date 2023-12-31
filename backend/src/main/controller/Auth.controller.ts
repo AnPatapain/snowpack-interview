@@ -17,7 +17,7 @@ let signUp = async (req: express.Request, res: express.Response, next: express.N
         // business logic
         const user = await authService.signUp(userData)
 
-        res.status(201).json({ message: "signup success", userEmail: user.email });
+        return res.status(201).json({ message: "signup success", userEmail: user.email });
     } catch (err) {
         next(err)
     }
@@ -41,7 +41,7 @@ let signIn = async (req: express.Request, res: express.Response, next: express.N
         // const userSession = req.session
         const response = await authService.signIn(userData)
 
-        res.status(200).send(response)
+        return res.status(200).send(response)
     } catch (err) {
         next(err)
     }

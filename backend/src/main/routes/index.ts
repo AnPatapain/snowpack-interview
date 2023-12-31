@@ -3,7 +3,7 @@ import pixabayRouter from "./Pixabay.routes";
 import authRoutes from "./Auth.routes";
 const router = express.Router();
 
-router.use(pixabayRouter);
 router.use(authRoutes);
+router.use(pixabayRouter);
 
 export default router;

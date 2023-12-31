@@ -3,6 +3,7 @@ import SearchBar from "../components/SearchBar";
 import Images from "../components/Images";
 import useFetch from "../hooks/useFetch";
 import useDebounce from "../hooks/useDebounce";
+import NavBar from "../components/Nav";
 
 const DashBoard: React.FC = () => {
     const [query, setQuery] = useState<string>("");
@@ -22,7 +23,8 @@ const DashBoard: React.FC = () => {
 
     return (
         <div className="text-center">
-            <h1 className="my-8 text-3xl font-bold">Hi 👋, What image you want to search today ?</h1>
+            <NavBar/>
+            <h1 className="my-8 text-2xl font-bold">Hello Detective 👋, Which image do you want to investigate today ?</h1>
             <SearchBar query={query} searchHandler={handleSearch}/>
             <br/>
             <Images images={data ? data.hits : []} loading={loading}/>
