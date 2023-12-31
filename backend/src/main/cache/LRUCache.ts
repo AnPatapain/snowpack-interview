@@ -5,6 +5,7 @@
  *  - put(key: string, value: T): void
  **/
 class LRUCache<T> {
+    private static instance: LRUCache<any>;
     private readonly maxSize: number;
     private cache: Map<string, Node<T>>;
 
@@ -14,6 +15,12 @@ class LRUCache<T> {
         this.cache = new Map<string, Node<T>>
     }
 
+    public static getInstance<T>(maxSize: number): LRUCache<T> {
+        if (!LRUCache.instance) {
+            LRUCache.instance = new LRUCache<T>(maxSize);
+        }
+        return LRUCache.instance;
+    }
 
     public get(key: string): T | undefined {
         if(this.cache.has(key)) {
@@ -46,8 +53,5 @@ class Node<T> {
         this.value = value;
     }
 }
-
-
-
 
 export default LRUCache;
