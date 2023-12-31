@@ -17,13 +17,15 @@ let verifyJwtToken = async (req: express.Request, res: express.Response, next: e
 
         const jwtReturn = jwt.verify(token, config.authConfig.jwt_secret);
 
-        if(typeof jwtReturn !== 'string') {
+        if(typeof jwtReturn !== 'string' && !SecurityContextHolder.getInstance().getSecurityContext()) {
             const user = await UserDao.findById(jwtReturn.id);
 
             if(user) {
                 const securityContext = new SecurityContext(user.id, user.email);
                 const securityContextHolder =  SecurityContextHolder.getInstance();
                 securityContextHolder.setSecurityContext(securityContext);
+
+                console.log(securityContextHolder.getSecurityContext());
             }
         }
 

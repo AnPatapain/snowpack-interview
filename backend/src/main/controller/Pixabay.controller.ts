@@ -9,7 +9,7 @@ let getImagesByQuery = async (req: express.Request, res: express.Response, next:
     if (typeof req.query.q !== 'string') return res.status(200).send("Query is missing");
     try {
         // Search on Cache first
-        const lruCache: LRUCache<Object[]> = LRUCache.getInstance(2);
+        const lruCache: LRUCache<Object[]> = LRUCache.getInstance(100);
         const data = lruCache.get(req.query.q);
 
         // If there is no such data in Cache then search on Database and update Cache
