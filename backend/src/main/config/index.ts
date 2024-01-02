@@ -5,6 +5,7 @@ import authConfig from "./auth.config";
 import e from "cors";
 
 import dotenv from "dotenv";
+import cacheConfig from "./cache.config";
 dotenv.config();
 
 interface ConfigType {
@@ -20,6 +21,9 @@ interface ConfigType {
     };
     authConfig: {
         jwt_secret: string;
+    };
+    cacheConfig: {
+        CACHE_MAX_SIZE: number;
     }
     // other config type
 }
@@ -30,5 +34,6 @@ export default {
     corsConfig,
     apiConfig,
     databaseConfig,
-    authConfig
+    authConfig,
+    cacheConfig
 };
