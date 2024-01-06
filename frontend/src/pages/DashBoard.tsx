@@ -15,6 +15,10 @@ const DashBoard: React.FC = () => {
     const [showAddCollection, setShowAddCollection] = useState<boolean>(false);
     const [selectedImage, setSelectedImage] = useState<string>("");
 
+    // const [page, setPage] = useState(0)
+    // const [pageSize, setPageSize] = useState(50)
+    // const [isFetching, setIsFetching] = useState(false)
+
     const fetchConfig = {
         url: "/api/pixabay/",
         params: {q: debounceQuery}
@@ -36,7 +40,16 @@ const DashBoard: React.FC = () => {
             }
         }
         fetchUser();
-    })
+    }, [])
+
+    // const handleScroll = () => {
+    //     if(Math.ceil(window.innerHeight + document.documentElement.scrollTop) >=
+    //         document.documentElement.offsetHeight && !isFetching) {
+    //         setPage(prevState => prevState + 1)
+    //         setIsFetching(true)
+    //     }
+    // };
+
     return (
         <div className="text-center">
             <NavBar activeItem="dashboard"/>
